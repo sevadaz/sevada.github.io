@@ -1,1 +1,136 @@
-Coming Soon...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Photography Portfolio</title>
+<style>
+  :root{
+    --bg:#f9f9f9;
+    --card-bg:#fff;
+    --text:#222;
+    --muted:#555;
+    --accent:#6ee7ff;
+    --radius:16px;
+    --shadow:0 8px 20px rgba(0,0,0,.12);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; font-family:sans-serif;}
+  body{ background:var(--bg); color:var(--text); line-height:1.6; }
+  a{ color:var(--accent); text-decoration:none; }
+  header{ text-align:center; padding:40px 20px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05);}
+  header img.profile{ width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); }
+  header h1{ margin:16px 0 8px; font-size:2em; }
+  header p{ max-width:600px; margin:0 auto 12px; color:var(--muted);}
+  header .socials{ display:flex; justify-content:center; gap:12px; margin-top:8px;}
+  header .socials a{ font-weight:bold; padding:6px 10px; border-radius:8px; background:var(--accent); color:#fff; transition:0.2s;}
+  header .socials a:hover{ background:#4dc5e6; }
+  .filters{ display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin:40px 20px 20px; }
+  .filters button{ padding:10px 16px; border:none; border-radius:50px; background:#eee; cursor:pointer; transition:0.2s; }
+  .filters button.active, .filters button:hover{ background:var(--accent); color:#fff; }
+  .gallery{ display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:16px; padding:20px; max-width:1200px; margin:0 auto; }
+  .card{ background:var(--card-bg); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); cursor:pointer; transition:transform 0.2s;}
+  .card:hover{ transform:translateY(-4px);}
+  .card img{ width:100%; display:block; object-fit:cover; height:180px; }
+  .card .meta{ padding:8px 12px;}
+  .card .meta .title{ font-weight:600; margin-bottom:4px;}
+  .card .meta .category{ font-size:0.9em; color:var(--muted);}
+  /* Lightbox */
+  dialog#lightbox{ border:none; padding:0; background:none; width:100%; max-width:90vw;}
+  dialog#lightbox img{ width:100%; max-height:90vh; object-fit:contain; border-radius:var(--radius);}
+  dialog::backdrop{ background:rgba(0,0,0,0.7); }
+  @media(max-width:600px){ .card img{ height:140px;} }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="profile" src="https://source.unsplash.com/120x120/?portrait" alt="My Photo">
+  <h1>Sev</h1>
+  <p>Hi! I'm a photographer and visual storyteller. I love capturing moments and sharing stories through my lens. Connect with me on socials below!</p>
+  <div class="socials">
+    <a href="#">Instagram</a>
+    <a href="#">Twitter</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</header>
+
+<div class="filters">
+  <button class="active" data-filter="all">All</button>
+  <button data-filter="portraits">Portraits</button>
+  <button data-filter="landscapes">Landscapes</button>
+  <button data-filter="street">Street</button>
+  <button data-filter="travel">Travel</button>
+</div>
+
+<ul class="gallery">
+  <!-- Portraits -->
+  <li class="card" data-cat="portraits">
+    <img src="https://source.unsplash.com/400x300/?portrait" alt="Portrait 1">
+    <div class="meta"><div class="title">Portrait 1</div><div class="category">Portraits</div></div>
+  </li>
+  <li class="card" data-cat="portraits">
+    <img src="https://source.unsplash.com/401x301/?portrait" alt="Portrait 2">
+    <div class="meta"><div class="title">Portrait 2</div><div class="category">Portraits</div></div>
+  </li>
+  <!-- Landscapes -->
+  <li class="card" data-cat="landscapes">
+    <img src="https://source.unsplash.com/400x300/?landscape,mountain" alt="Landscape 1">
+    <div class="meta"><div class="title">Mountain View</div><div class="category">Landscapes</div></div>
+  </li>
+  <li class="card" data-cat="landscapes">
+    <img src="https://source.unsplash.com/401x301/?landscape,sea" alt="Landscape 2">
+    <div class="meta"><div class="title">Sea Horizon</div><div class="category">Landscapes</div></div>
+  </li>
+  <!-- Street -->
+  <li class="card" data-cat="street">
+    <img src="https://source.unsplash.com/400x300/?street,city" alt="Street 1">
+    <div class="meta"><div class="title">Busy Street</div><div class="category">Street</div></div>
+  </li>
+  <li class="card" data-cat="street">
+    <img src="https://source.unsplash.com/401x301/?street,night" alt="Street 2">
+    <div class="meta"><div class="title">Night Life</div><div class="category">Street</div></div>
+  </li>
+  <!-- Travel -->
+  <li class="card" data-cat="travel">
+    <img src="https://source.unsplash.com/400x300/?beach" alt="Travel 1">
+    <div class="meta"><div class="title">Beach Paradise</div><div class="category">Travel</div></div>
+  </li>
+  <li class="card" data-cat="travel">
+    <img src="https://source.unsplash.com/401x301/?city,travel" alt="Travel 2">
+    <div class="meta"><div class="title">City Travel</div><div class="category">Travel</div></div>
+  </li>
+</ul>
+
+<dialog id="lightbox">
+  <img id="lb-img" src="" alt="">
+</dialog>
+
+<script>
+const filterBtns = document.querySelectorAll('.filters button');
+const cards = document.querySelectorAll('.gallery .card');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    cards.forEach(card => {
+      card.style.display = (filter==='all' || card.dataset.cat===filter) ? 'block' : 'none';
+    });
+  });
+});
+
+// Lightbox
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+cards.forEach((card)=>{
+  card.addEventListener('click', ()=>{
+    const img = card.querySelector('img');
+    lbImg.src = img.src;
+    lb.showModal();
+  });
+});
+lb.addEventListener('click', ()=>lb.close());
+</script>
+
+</body>
+</html>
