@@ -28,21 +28,35 @@
   .filters button{ padding:10px 16px; border:none; border-radius:50px; background:#eee; cursor:pointer; transition:0.2s; }
   .filters button.active, .filters button:hover{ background:var(--accent); color:#fff; }
   .gallery{ display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:16px; padding:20px; max-width:1200px; margin:0 auto; }
-  .card{ background:var(--card-bg); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); cursor:pointer; transition:transform 0.2s; aspect-ratio:1 / 1; display:flex; flex-direction:column;}
+  .card{ background:var(--card-bg); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); cursor:pointer; transition:transform 0.2s; aspect-ratio:1/1; display:flex; flex-direction:column;}
   .card:hover{ transform:translateY(-4px);}
   .card img{ width:100%; height:100%; object-fit:cover; display:block; }
   .card .meta{ padding:8px 12px;}
   .card .meta .title{ font-weight:600; margin-bottom:4px;}
   .card .meta .category{ font-size:0.9em; color:var(--muted);}
-  dialog#lightbox{ border:none; padding:0; background:none; width:100%; max-width:90vw;}
-  dialog#lightbox img{ width:100%; max-height:90vh; object-fit:contain; border-radius:var(--radius);}
-  dialog::backdrop{ background:rgba(0,0,0,0.7); }
+  /* Lightbox */
+  #lightbox-overlay{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+  }
+  #lightbox-overlay img{
+    max-width:90%;
+    max-height:90%;
+    display:block;
+    object-fit:contain;
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <img class="profile" src="https://source.unsplash.com/120x120/?portrait" alt="My Photo">
+  <img class="profile" src="https://picsum.photos/400" alt="My Photo">
   <h1>Sev</h1>
   <p>Hi! I'm a photographer and visual storyteller. I love capturing moments and sharing stories through my lens. Connect with me on socials below!</p>
   <div class="socials">
@@ -71,58 +85,64 @@
   </li>
   <li class="card" data-cat="landscapes">
     <img src="https://picsum.photos/400" alt="Landscape 1">
-    <div class="meta"><div class="title">Mountain View</div><div class="category">Landscapes</div></div>
+    <div class="meta"><div class="title">Landscape 1</div><div class="category">Landscapes</div></div>
   </li>
   <li class="card" data-cat="landscapes">
     <img src="https://picsum.photos/400" alt="Landscape 2">
-    <div class="meta"><div class="title">Sea Horizon</div><div class="category">Landscapes</div></div>
+    <div class="meta"><div class="title">Landscape 2</div><div class="category">Landscapes</div></div>
   </li>
   <li class="card" data-cat="street">
     <img src="https://picsum.photos/400" alt="Street 1">
-    <div class="meta"><div class="title">Busy Street</div><div class="category">Street</div></div>
+    <div class="meta"><div class="title">Street 1</div><div class="category">Street</div></div>
   </li>
   <li class="card" data-cat="street">
     <img src="https://picsum.photos/400" alt="Street 2">
-    <div class="meta"><div class="title">Night Life</div><div class="category">Street</div></div>
+    <div class="meta"><div class="title">Street 2</div><div class="category">Street</div></div>
   </li>
   <li class="card" data-cat="travel">
     <img src="https://picsum.photos/400" alt="Travel 1">
-    <div class="meta"><div class="title">Beach Paradise</div><div class="category">Travel</div></div>
+    <div class="meta"><div class="title">Travel 1</div><div class="category">Travel</div></div>
   </li>
   <li class="card" data-cat="travel">
     <img src="https://picsum.photos/400" alt="Travel 2">
-    <div class="meta"><div class="title">City Travel</div><div class="category">Travel</div></div>
+    <div class="meta"><div class="title">Travel 2</div><div class="category">Travel</div></div>
   </li>
 </ul>
 
-<dialog id="lightbox">
-  <img id="lb-img" src="" alt="">
-</dialog>
+<!-- Lightbox Overlay -->
+<div id="lightbox-overlay">
+  <img src="" alt="Expanded Image">
+</div>
 
 <script>
 const filterBtns = document.querySelectorAll('.filters button');
 const cards = document.querySelectorAll('.gallery .card');
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
+const overlay = document.getElementById('lightbox-overlay');
+const overlayImg = overlay.querySelector('img');
+
+// Filter functionality
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
     filterBtns.forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const filter = btn.dataset.filter;
-    cards.forEach(card => {
+    cards.forEach(card=>{
       card.style.display = (filter==='all' || card.dataset.cat===filter) ? 'block' : 'none';
     });
   });
 });
 
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lb-img');
-cards.forEach((card)=>{
+// Lightbox functionality
+cards.forEach(card=>{
   card.addEventListener('click', ()=>{
     const img = card.querySelector('img');
-    lbImg.src = img.src;
-    lb.showModal();
+    overlayImg.src = img.src;
+    overlay.style.display = 'flex';
   });
 });
-lb.addEventListener('click', ()=>lb.close());
+
+// Close overlay when clicked
+overlay.addEventListener('click', ()=> overlay.style.display='none');
 </script>
 
 </body>
