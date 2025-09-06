@@ -17,70 +17,39 @@
   *{ box-sizing:border-box; margin:0; padding:0; font-family:sans-serif;}
   body{ background:var(--bg); color:var(--text); line-height:1.6; }
   a{ color:var(--accent); text-decoration:none; }
-
-  /* Sticky Header */
-  header {
-    position: sticky;       /* stays visible while scrolling */
-    top: 0;                 /* stick to the top */
-    z-index: 999;           /* stays above other content */
-    text-align: center;
-    padding: 20px 20px 30px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,.05);
-  }
-
-  header img.profile{
-    width:120px; height:120px;
-    border-radius:50%;
-    object-fit:cover;
-    border:4px solid var(--accent);
-  }
-
+  header{ text-align:center; padding:40px 20px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05);}
+  header img.profile{ width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); }
   header h1{ margin:16px 0 8px; font-size:2em; }
   header p{ max-width:600px; margin:0 auto 12px; color:var(--muted);}
-  header .socials{
-    display:flex; justify-content:center; gap:12px; margin-top:8px;
-  }
-  header .socials a{
-    font-weight:bold; padding:6px 10px; border-radius:8px; background:var(--accent); color:#fff; transition:0.2s;
-  }
+  header .socials{ display:flex; justify-content:center; gap:12px; margin-top:8px;}
+  header .socials a{ font-weight:bold; padding:6px 10px; border-radius:8px; background:var(--accent); color:#fff; transition:0.2s;}
   header .socials a:hover{ background:#4dc5e6; }
-
-  /* Filters */
-  .filters{
-    display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin:40px 20px 20px;
-  }
-  .filters button{
-    padding:10px 16px; border:none; border-radius:50px; background:#eee; cursor:pointer; transition:0.2s;
-  }
-  .filters button.active, .filters button:hover{
-    background:var(--accent); color:#fff;
-  }
-
-  /* Gallery */
-  .gallery{
-    display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:16px;
-    padding:20px; max-width:1200px; margin:0 auto 50px;
-  }
-  .card{
-    background:var(--card-bg); border-radius:var(--radius); overflow:hidden;
-    box-shadow:var(--shadow); cursor:pointer; transition:transform 0.2s;
-    aspect-ratio:1/1; display:flex; flex-direction:column;
-  }
+  .filters{ display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin:40px 20px 20px; }
+  .filters button{ padding:10px 16px; border:none; border-radius:50px; background:#eee; cursor:pointer; transition:0.2s; }
+  .filters button.active, .filters button:hover{ background:var(--accent); color:#fff; }
+  .gallery{ display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:16px; padding:20px; max-width:1200px; margin:0 auto; }
+  .card{ background:var(--card-bg); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); cursor:pointer; transition:transform 0.2s; aspect-ratio:1/1; display:flex; flex-direction:column;}
   .card:hover{ transform:translateY(-4px);}
   .card img{ width:100%; height:100%; object-fit:cover; display:block; }
   .card .meta{ padding:8px 12px;}
   .card .meta .title{ font-weight:600; margin-bottom:4px;}
   .card .meta .category{ font-size:0.9em; color:var(--muted);}
-
   /* Lightbox */
   #lightbox-overlay{
-    position:fixed; top:0; left:0; width:100%; height:100%;
-    background:rgba(0,0,0,0.85); display:none;
-    justify-content:center; align-items:center; z-index:1000;
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
   }
   #lightbox-overlay img{
-    max-width:90%; max-height:90%; display:block; object-fit:contain;
+    max-width:90%;
+    max-height:90%;
+    display:block;
+    object-fit:contain;
   }
 </style>
 </head>
