@@ -3,146 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Photography Portfolio</title>
+<title>My Photography Portfolio</title>
 <style>
-    /* Reset */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    body { background: #f9f9f9; color: #333; line-height: 1.6; }
-
-    /* Header */
-    header {
-        text-align: center;
-        padding: 50px 20px 30px;
-        background: #fff;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    header img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; }
-    header h1 { font-size: 2.2em; margin-bottom: 10px; }
-    header p { max-width: 600px; margin: 0 auto 15px; }
-    header .socials a { text-decoration: none; margin: 0 10px; color: #555; font-weight: bold; }
-
-    /* Categories */
-    .categories, .subcategories {
-        text-align: center;
-        margin: 30px 0;
-    }
-    .categories label, .subcategories label {
-        cursor: pointer;
-        display: inline-block;
-        margin: 0 10px 10px;
-        padding: 10px 20px;
-        background: #fff;
-        border-radius: 30px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-    }
-    .categories label:hover, .subcategories label:hover {
-        background: #333; color: #fff;
-    }
-    input[type="radio"] { display: none; }
-
-    /* Gallery */
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 15px;
-        padding: 20px;
-        max-width: 1200px;
-        margin: 0 auto 50px;
-    }
-    .gallery-item {
-        position: relative;
-        overflow: hidden;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-        display: none;
-    }
-    .gallery-item img {
-        width: 100%; height: 100%; object-fit: cover; display: block;
-        transition: transform 0.3s ease;
-    }
-    .gallery-item:hover img { transform: scale(1.1); }
-
-    /* Main Categories */
-    #all:checked ~ .gallery .gallery-item { display: block; }
-    #nature:checked ~ .gallery .nature { display: block; }
-    #portrait:checked ~ .gallery .portrait { display: block; }
-    #urban:checked ~ .gallery .urban { display: block; }
-    #map:checked ~ .subcategories { display: block; }
-
-    /* Hide subcategories unless MAP selected */
-    .subcategories { display: none; }
-
-    /* MAP Subcategories */
-    #california:checked ~ .gallery .california { display: block; }
-    #newyork:checked ~ .gallery .newyork { display: block; }
-    #texas:checked ~ .gallery .texas { display: block; }
+  :root{
+    --bg:#f9f9f9;
+    --card-bg:#fff;
+    --text:#222;
+    --muted:#555;
+    --accent:#6ee7ff;
+    --radius:16px;
+    --shadow:0 8px 20px rgba(0,0,0,.12);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; font-family:sans-serif;}
+  body{ background:var(--bg); color:var(--text); line-height:1.6; }
+  a{ color:var(--accent); text-decoration:none; }
+  header{ text-align:center; padding:40px 20px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05);}
+  header img.profile{ width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); }
+  header h1{ margin:16px 0 8px; font-size:2em; }
+  header p{ max-width:600px; margin:0 auto 12px; color:var(--muted);}
+  header .socials{ display:flex; justify-content:center; gap:12px; margin-top:8px;}
+  header .socials a{ font-weight:bold; padding:6px 10px; border-radius:8px; background:var(--accent); color:#fff; transition:0.2s;}
+  header .socials a:hover{ background:#4dc5e6; }
+  .filters{ display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin:40px 20px 20px; }
+  .filters button{ padding:10px 16px; border:none; border-radius:50px; background:#eee; cursor:pointer; transition:0.2s; }
+  .filters button.active, .filters button:hover{ background:var(--accent); color:#fff; }
+  .gallery{ display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:16px; padding:20px; max-width:1200px; margin:0 auto; }
+  .card{ background:var(--card-bg); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); cursor:pointer; transition:transform 0.2s; aspect-ratio:1/1; display:flex; flex-direction:column;}
+  .card:hover{ transform:translateY(-4px);}
+  .card img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .card .meta{ padding:8px 12px;}
+  .card .meta .title{ font-weight:600; margin-bottom:4px;}
+  .card .meta .category{ font-size:0.9em; color:var(--muted);}
+  /* Lightbox */
+  #lightbox-overlay{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+  }
+  #lightbox-overlay img{
+    max-width:90%;
+    max-height:90%;
+    display:block;
+    object-fit:contain;
+  }
 </style>
 </head>
 <body>
 
 <header>
-    <img src="profile.jpg" alt="Your Name">
-    <h1>Your Name</h1>
-    <p>Short about me: Photographer, traveler, dreamer. Capturing moments one frame at a time.</p>
-    <div class="socials">
-        <a href="#">Instagram</a>
-        <a href="#">Twitter</a>
-        <a href="#">LinkedIn</a>
-    </div>
+  <img class="profile" src="https://picsum.photos/400" alt="My Photo">
+  <h1>Sev</h1>
+  <p>Hi! I'm a photographer and visual storyteller. I love capturing moments and sharing stories through my lens. Connect with me on socials below!</p>
+  <div class="socials">
+    <a href="#">Instagram</a>
+    <a href="#">Twitter</a>
+    <a href="#">LinkedIn</a>
+  </div>
 </header>
 
-<!-- Main Categories -->
-<div class="categories">
-    <input type="radio" name="category" id="all" checked>
-    <label for="all">All</label>
-
-    <input type="radio" name="category" id="nature">
-    <label for="nature">Nature</label>
-
-    <input type="radio" name="category" id="portrait">
-    <label for="portrait">Portrait</label>
-
-    <input type="radio" name="category" id="urban">
-    <label for="urban">Urban</label>
-
-    <input type="radio" name="category" id="map">
-    <label for="map">MAP</label>
+<div class="filters">
+  <button class="active" data-filter="all">All</button>
+  <button data-filter="portraits">Portraits</button>
+  <button data-filter="landscapes">Landscapes</button>
+  <button data-filter="street">Street</button>
+  <button data-filter="travel">Travel</button>
 </div>
 
-<!-- Subcategories (only visible when MAP selected) -->
-<div class="subcategories">
-    <input type="radio" name="subcategory" id="california">
-    <label for="california">California</label>
+<ul class="gallery">
+  <li class="card" data-cat="portraits">
+    <img src="https://picsum.photos/400" alt="Portrait 1">
+    <div class="meta"><div class="title">Portrait 1</div><div class="category">Portraits</div></div>
+  </li>
+  <li class="card" data-cat="portraits">
+    <img src="https://picsum.photos/400" alt="Portrait 2">
+    <div class="meta"><div class="title">Portrait 2</div><div class="category">Portraits</div></div>
+  </li>
+  <li class="card" data-cat="landscapes">
+    <img src="https://picsum.photos/400" alt="Landscape 1">
+    <div class="meta"><div class="title">Landscape 1</div><div class="category">Landscapes</div></div>
+  </li>
+  <li class="card" data-cat="landscapes">
+    <img src="https://picsum.photos/400" alt="Landscape 2">
+    <div class="meta"><div class="title">Landscape 2</div><div class="category">Landscapes</div></div>
+  </li>
+  <li class="card" data-cat="street">
+    <img src="https://picsum.photos/400" alt="Street 1">
+    <div class="meta"><div class="title">Street 1</div><div class="category">Street</div></div>
+  </li>
+  <li class="card" data-cat="street">
+    <img src="https://picsum.photos/400" alt="Street 2">
+    <div class="meta"><div class="title">Street 2</div><div class="category">Street</div></div>
+  </li>
+  <li class="card" data-cat="travel">
+    <img src="https://picsum.photos/400" alt="Travel 1">
+    <div class="meta"><div class="title">Travel 1</div><div class="category">Travel</div></div>
+  </li>
+  <li class="card" data-cat="travel">
+    <img src="https://picsum.photos/400" alt="Travel 2">
+    <div class="meta"><div class="title">Travel 2</div><div class="category">Travel</div></div>
+  </li>
+</ul>
 
-    <input type="radio" name="subcategory" id="newyork">
-    <label for="newyork">New York</label>
-
-    <input type="radio" name="subcategory" id="texas">
-    <label for="texas">Texas</label>
+<!-- Lightbox Overlay -->
+<div id="lightbox-overlay">
+  <img src="" alt="Expanded Image">
 </div>
 
-<!-- Gallery -->
-<div class="gallery">
-    <!-- Nature -->
-    <div class="gallery-item nature"><img src="https://picsum.photos/400/300?random=1" alt="Nature 1"></div>
-    <div class="gallery-item nature"><img src="https://picsum.photos/400/300?random=2" alt="Nature 2"></div>
+<script>
+const filterBtns = document.querySelectorAll('.filters button');
+const cards = document.querySelectorAll('.gallery .card');
+const overlay = document.getElementById('lightbox-overlay');
+const overlayImg = overlay.querySelector('img');
 
-    <!-- Portrait -->
-    <div class="gallery-item portrait"><img src="https://picsum.photos/400/300?random=3" alt="Portrait 1"></div>
-    <div class="gallery-item portrait"><img src="https://picsum.photos/400/300?random=4" alt="Portrait 2"></div>
+// Filter functionality
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    cards.forEach(card=>{
+      card.style.display = (filter==='all' || card.dataset.cat===filter) ? 'block' : 'none';
+    });
+  });
+});
 
-    <!-- Urban -->
-    <div class="gallery-item urban"><img src="https://picsum.photos/400/300?random=5" alt="Urban 1"></div>
-    <div class="gallery-item urban"><img src="https://picsum.photos/400/300?random=6" alt="Urban 2"></div>
+// Lightbox functionality
+cards.forEach(card=>{
+  card.addEventListener('click', ()=>{
+    const img = card.querySelector('img');
+    overlayImg.src = img.src;
+    overlay.style.display = 'flex';
+  });
+});
 
-    <!-- MAP Subcategories -->
-    <div class="gallery-item california"><img src="https://picsum.photos/400/300?random=7" alt="California 1"></div>
-    <div class="gallery-item california"><img src="https://picsum.photos/400/300?random=8" alt="California 2"></div>
-    <div class="gallery-item newyork"><img src="https://picsum.photos/400/300?random=9" alt="New York 1"></div>
-    <div class="gallery-item texas"><img src="https://picsum.photos/400/300?random=10" alt="Texas 1"></div>
-</div>
+// Close overlay when clicked
+overlay.addEventListener('click', ()=> overlay.style.display='none');
+</script>
 
 </body>
 </html>
