@@ -7,34 +7,56 @@
 <title>My Photography Portfolio</title>
 <style>
   :root{
-    --bg:#f9f9f9;
-    --card-bg:#fff;
-    --text:#222;
-    --muted:#555;
-    --accent:#6ee7ff;
+    --card-bg:#1f1f2e;
+    --text:#eee;
+    --muted:#ccc;
+    --accent:#6e5cff;
     --radius:16px;
-    --shadow:0 8px 20px rgba(0,0,0,.12);
+    --shadow:0 8px 20px rgba(0,0,0,.5);
   }
   *{ box-sizing:border-box; margin:0; padding:0; font-family:sans-serif;}
-  body{ background:var(--bg); color:var(--text); line-height:1.6; }
+  
+  /* Elegant Dark Background */
+  body {
+    background: radial-gradient(circle at 30% 30%, #1a1a2e, #162447 70%, #1f4068 100%);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  
   a{ color:var(--accent); text-decoration:none; }
-  header{ text-align:center; padding:40px 20px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05);}
+  
+  /* Sticky Header */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(0,0,0,0.7);
+    box-shadow: 0 2px 8px rgba(0,0,0,.5);
+    color: var(--text);
+  }
   header img.profile{ width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); }
   header h1{ margin:16px 0 8px; font-size:2em; }
   header p{ max-width:600px; margin:0 auto 12px; color:var(--muted);}
   header .socials{ display:flex; justify-content:center; gap:12px; margin-top:8px;}
   header .socials a{ font-weight:bold; padding:6px 10px; border-radius:8px; background:var(--accent); color:#fff; transition:0.2s;}
-  header .socials a:hover{ background:#4dc5e6; }
+  header .socials a:hover{ background:#8f7fff; }
+  
+  /* Filters */
   .filters{ display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin:40px 20px 20px; }
-  .filters button{ padding:10px 16px; border:none; border-radius:50px; background:#eee; cursor:pointer; transition:0.2s; }
+  .filters button{ padding:10px 16px; border:none; border-radius:50px; background:#333; color:#ccc; cursor:pointer; transition:0.2s; }
   .filters button.active, .filters button:hover{ background:var(--accent); color:#fff; }
-  .gallery{ display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:16px; padding:20px; max-width:1200px; margin:0 auto; }
+  
+  /* Gallery */
+  .gallery{ display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:16px; padding:20px; max-width:1200px; margin:0 auto 50px; }
   .card{ background:var(--card-bg); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); cursor:pointer; transition:transform 0.2s; aspect-ratio:1/1; display:flex; flex-direction:column;}
   .card:hover{ transform:translateY(-4px);}
   .card img{ width:100%; height:100%; object-fit:cover; display:block; }
   .card .meta{ padding:8px 12px;}
-  .card .meta .title{ font-weight:600; margin-bottom:4px;}
+  .card .meta .title{ font-weight:600; margin-bottom:4px; color:#fff;}
   .card .meta .category{ font-size:0.9em; color:var(--muted);}
+  
   /* Lightbox */
   #lightbox-overlay{
     position:fixed;
