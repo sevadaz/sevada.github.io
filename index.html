@@ -49,13 +49,51 @@ body {
   .filters button.active, .filters button:hover{ background:var(--accent); color:#fff; }
 
   /* Gallery */
-  .gallery{ display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:16px; padding:20px; max-width:1200px; margin:0 auto 50px; }
-  .card{ background:var(--card-bg); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); cursor:pointer; transition:transform 0.2s; aspect-ratio:1/1; display:flex; flex-direction:column;}
-  .card:hover{ transform:translateY(-4px);}
-  .card img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .card .meta{ padding:8px 12px;}
-  .card .meta .title{ font-weight:600; margin-bottom:4px; color:#fff;}
-  .card .meta .category{ font-size:0.9em; color:var(--muted);}
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto 50px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card img {
+    width: 100%;
+    height: auto; /* keep the image aspect ratio */
+    display: block;
+    object-fit: cover;
+  }
+
+  .card .meta {
+    padding: 8px 12px;
+  }
+
+  .card .meta .title {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #fff;
+  }
+
+  .card .meta .category {
+    font-size: 0.9em;
+    color: var(--muted);
+  }
 
   /* Lightbox */
   #lightbox-overlay{
@@ -99,35 +137,35 @@ body {
 
 <ul class="gallery">
   <li class="card" data-cat="portraits">
-    <img src="https://picsum.photos/400" alt="Portrait 1">
+    <img src="https://picsum.photos/400/500" alt="Portrait 1">
     <div class="meta"><div class="title">Portrait 1</div><div class="category">Portraits</div></div>
   </li>
   <li class="card" data-cat="portraits">
-    <img src="https://picsum.photos/400" alt="Portrait 2">
+    <img src="https://picsum.photos/400/400" alt="Portrait 2">
     <div class="meta"><div class="title">Portrait 2</div><div class="category">Portraits</div></div>
   </li>
   <li class="card" data-cat="landscapes">
-    <img src="https://picsum.photos/400" alt="Landscape 1">
+    <img src="https://picsum.photos/400/300" alt="Landscape 1">
     <div class="meta"><div class="title">Landscape 1</div><div class="category">Landscapes</div></div>
   </li>
   <li class="card" data-cat="landscapes">
-    <img src="https://picsum.photos/400" alt="Landscape 2">
+    <img src="https://picsum.photos/400/200" alt="Landscape 2">
     <div class="meta"><div class="title">Landscape 2</div><div class="category">Landscapes</div></div>
   </li>
   <li class="card" data-cat="street">
-    <img src="https://picsum.photos/400" alt="Street 1">
+    <img src="https://picsum.photos/400/600" alt="Street 1">
     <div class="meta"><div class="title">Street 1</div><div class="category">Street</div></div>
   </li>
   <li class="card" data-cat="street">
-    <img src="https://picsum.photos/400" alt="Street 2">
+    <img src="https://picsum.photos/400/400" alt="Street 2">
     <div class="meta"><div class="title">Street 2</div><div class="category">Street</div></div>
   </li>
   <li class="card" data-cat="travel">
-    <img src="https://picsum.photos/400" alt="Travel 1">
+    <img src="https://picsum.photos/400/700" alt="Travel 1">
     <div class="meta"><div class="title">Travel 1</div><div class="category">Travel</div></div>
   </li>
   <li class="card" data-cat="travel">
-    <img src="https://picsum.photos/400" alt="Travel 2">
+    <img src="https://picsum.photos/400/400" alt="Travel 2">
     <div class="meta"><div class="title">Travel 2</div><div class="category">Travel</div></div>
   </li>
 </ul>
