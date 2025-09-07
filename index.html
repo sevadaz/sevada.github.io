@@ -47,17 +47,22 @@ header .socials a:hover{ background:#8f7fff; }
 .filters button{ padding:10px 16px; border:none; border-radius:50px; background:#d1b169; color:#000; cursor:pointer; transition:0.2s; }
 .filters button.active, .filters button:hover{ background:var(--accent); color:#fff; }
 
-/* Gallery */
+/* Masonry Gallery */
 .gallery{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap:16px;
+  column-count: 4; /* default number of columns */
+  column-gap: 16px;
   padding:20px;
   max-width:1200px;
   margin:0 auto 50px;
 }
 
+@media (max-width:1200px){ .gallery{ column-count:3; } }
+@media (max-width:800px){ .gallery{ column-count:2; } }
+@media (max-width:500px){ .gallery{ column-count:1; } }
+
 .card{
+  margin-bottom:16px;
+  break-inside: avoid;
   border-radius:var(--radius);
   overflow:hidden;
   box-shadow:var(--shadow);
@@ -71,7 +76,7 @@ header .socials a:hover{ background:#8f7fff; }
 
 .card img{
   width:100%;
-  height:auto; /* maintain image aspect ratio */
+  height:auto;
   display:block;
   object-fit:cover;
 }
