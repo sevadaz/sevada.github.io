@@ -18,16 +18,11 @@
   
   /* Dark Elegant Background */
 body {
-  background: linear-gradient(135deg, #1a1a2e, #162447, #1f4068, #1a1a2e);
-  background-size: 400% 400%;
-  animation: gradientMove 30s ease infinite;
+  background: radial-gradient(circle, #1a1a2e 0%, #162447 50%, #1f4068 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   color: var(--text);
-}
-
-@keyframes gradientMove {
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
 }
 
   
