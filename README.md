@@ -1,1 +1,0 @@
-# sevada.github.io
