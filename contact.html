@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Me</title>
+<style>
+  :root{
+    --card-bg:#1f1f2e;
+    --card-border:#8d8da8;
+    --text:#eee;
+    --muted:#ccc;
+    --accent:#6e5cff;
+    --profile-border:#8d8da8;
+    --radius:4px;
+    --shadow:0 8px 20px rgba(0,0,0,.8);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; font-family:sans-serif;}
+  
+  body {
+    background: radial-gradient(circle, #1a1a2e 0%, #162447 100%);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 40px 20px;
+  background: rgba(0,0,0,0.7); /* semi-transparent overlay */
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,.5);
+  max-width: 800px; /* same max-width as contact card */
+  width: 100%;
+}
+  header img.profile{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid var(--profile-border);
+    margin-bottom:16px;
+  }
+  header h1{ font-size:2em; margin-bottom:8px; font-family: 'Great Vibes', cursive;}
+  header p{ color:var(--muted); max-width:600px; margin:0 auto; }
+
+  .contact-card{
+    background: var(--card-bg);
+    border: 5px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 30px 40px;
+    box-shadow: var(--shadow);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+  }
+  .contact-card p{ margin-bottom:12px; color:var(--muted); font-size:1.1em; }
+  .contact-card a{
+    display:inline-block;
+    margin-bottom:12px;
+    color:#fff;
+    background:var(--accent);
+    padding:10px 20px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.2s;
+  }
+  .contact-card a:hover{ background:#8f7fff; }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="profile" src="https://picsum.photos/400" alt="My Photo">
+  <h1>Sevada Photography</h1>
+  <p>I'd love to hear from you! Reach out via email or phone, or connect with me on socials below.</p>
+</header>
+
+<div class="contact-card">
+
+  <p>Website:</p>
+  <a href="https://sevada.photography/">sevada.photography</a>
+
+  <p>Email:</p>
+  <a href="mailto:contact@sevada.photography">contact@sevada.photography</a>
+
+  <p>Phone:</p>
+  <a href="tel:+1234567890">+1 (234) 567-890</a>
+
+  <p>Or find me on socials:</p>
+  <div class="socials">
+    <a href="http://instagram.com/sevada.photography">Instagram</a>
+    <a href="https://www.youtube.com/@sevada">YouTube</a>
+  </div>
+</div>
+
+</body>
+</html>
