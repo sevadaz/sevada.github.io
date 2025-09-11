@@ -27,18 +27,19 @@
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
+    font-size: 18px; /* base font size */
   }
 
-header {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 40px 20px;
-  background: rgba(0,0,0,0.7); /* semi-transparent overlay */
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px rgba(0,0,0,.5);
-  max-width: 800px; /* same max-width as contact card */
-  width: 100%;
-}
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+    background: rgba(0,0,0,0.7);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,.5);
+    max-width: 800px;
+    width: 100%;
+  }
   header img.profile{
     width:120px;
     height:120px;
@@ -47,8 +48,17 @@ header {
     border:4px solid var(--profile-border);
     margin-bottom:16px;
   }
-  header h1{ font-size:2em; margin-bottom:8px; font-family: 'Great Vibes', cursive;}
-  header p{ color:var(--muted); max-width:600px; margin:0 auto; }
+  header h1{
+    font-size:2em;
+    margin-bottom:8px;
+    font-family: 'Great Vibes', cursive;
+  }
+  header p{
+    color:var(--muted);
+    max-width:600px;
+    margin:0 auto 24px; /* more breathing space */
+    font-size: 1em;
+  }
 
   .contact-card{
     background: var(--card-bg);
@@ -60,7 +70,11 @@ header {
     width: 100%;
     text-align: center;
   }
-  .contact-card p{ margin-bottom:12px; color:var(--muted); font-size:1.1em; }
+  .contact-card p{
+    margin-bottom:12px;
+    color:var(--muted);
+    font-size:1.1em;
+  }
   .contact-card a{
     display:inline-block;
     margin-bottom:12px;
@@ -72,7 +86,34 @@ header {
     font-weight:bold;
     transition:0.2s;
   }
-  .contact-card a:hover{ background:#8f7fff; }
+  .contact-card a:hover{
+    background:#8f7fff;
+  }
+
+  /* 4K and ultra-wide screens */
+  @media (min-width: 2560px) {
+    body {
+      font-size: 20px; /* bigger text */
+    }
+    header h1 {
+      font-size: 3.5em;
+    }
+    header p {
+      max-width: 1000px;
+      font-size: 1.25em;
+    }
+    .contact-card {
+      max-width: 1200px;
+      padding: 50px 60px;
+    }
+    .contact-card p {
+      font-size: 1.25em;
+    }
+    .contact-card a {
+      font-size: 1.1em;
+      padding: 14px 28px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -84,7 +125,6 @@ header {
 </header>
 
 <div class="contact-card">
-
   <p>Website:</p>
   <a href="https://sevada.photography/">sevada.photography</a>
 
