@@ -1,105 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thank You - Sevada Photography</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<title>Contact Me</title>
 <style>
   :root{
-    --bg: radial-gradient(circle, #1a1a2e 0%, #162447 100%);
     --card-bg:#1f1f2e;
     --card-border:#8d8da8;
     --text:#eee;
     --muted:#ccc;
     --accent:#6e5cff;
+    --profile-border:#8d8da8;
     --radius:4px;
     --shadow:0 8px 20px rgba(0,0,0,.8);
   }
-  *{box-sizing:border-box; margin:0; padding:0; font-family:sans-serif;}
-
+  *{ box-sizing:border-box; margin:0; padding:0; font-family:sans-serif;}
+  
   body {
-    position: relative; /* needed for overlay */
-    background: var(--bg);
+    background: radial-gradient(circle, #1a1a2e 0%, #162447 100%);
     color: var(--text);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 40px 20px;
+    font-size: 18px;
+  }
+
+  header {
     text-align: center;
-    overflow: hidden;
-  }
-
-  /* Overlay */
-  body::before {
-    content: "";
-    position: absolute;
-    top:0;
-    left:0;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+    background: rgba(0,0,0,0.7);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,.5);
+    max-width: 800px;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7); /* black overlay */
-    z-index: 0;
+  }
+  header img.profile{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid var(--profile-border);
+    margin-bottom:16px;
+  }
+  header h1{
+    font-size:2em;
+    margin-bottom:8px;
+    font-family: 'Great Vibes', cursive;
+  }
+  header p{
+    color:var(--muted);
+    max-width:600px;
+    margin:0 auto 24px;
+    font-size: 1em;
   }
 
-  .thankyou-card {
-    position: relative; /* above overlay */
-    z-index: 1;
+  .contact-card{
     background: var(--card-bg);
     border: 5px solid var(--card-border);
     border-radius: var(--radius);
-    padding: 40px 50px;
+    padding: 30px 40px;
     box-shadow: var(--shadow);
-    max-width: 700px;
+    max-width: 800px;
     width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .contact-card p{
+    margin-bottom:12px;
+    color:var(--muted);
+    font-size:1.1em;
+  }
+  .contact-card a{
+    display:inline-block;
+    margin-bottom:12px;
+    color:#fff;
+    background:var(--accent);
+    padding:10px 20px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.2s;
+  }
+  .contact-card a:hover{
+    background:#8f7fff;
   }
 
-  h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #ffcf63;
+  /* Contact form styling */
+  .contact-form {
+    background: var(--card-bg);
+    border: 5px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 30px 40px;
+    box-shadow: var(--shadow);
+    max-width: 800px;
+    width: 100%;
+    color: var(--text);
   }
-
-  p {
-    font-size: 1.1em;
-    color: var(--muted);
-    margin-bottom: 25px;
+  .contact-form h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
   }
-
-  a.button {
-    display: inline-block;
-    padding: 12px 25px;
-    background: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
+  .contact-form label {
+    display:block;
+    margin-top:15px;
+    font-size:14px;
+    color:var(--muted);
+    text-align: left;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    border:none;
+    border-radius:6px;
+    background:#47475e;
+    color:#fff;
+    font-size:15px;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline:2px solid var(--accent);
+  }
+  .contact-form textarea {
+    min-height:120px;
+    resize: vertical;
+  }
+  .contact-form button {
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    background:var(--accent);
+    border:none;
+    border-radius:50px;
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
     transition: background 0.3s;
   }
-
-  a.button:hover {
-    background: #8f7fff;
+  .contact-form button:hover {
+    background:#8f7fff;
   }
 
+  /* 4K and ultra-wide screens */
   @media (min-width: 2560px) {
-    body {font-size: 20px;}
-    h1 {font-size: 4em;}
-    p {font-size: 1.4em;}
-    .thankyou-card {padding: 60px 80px;}
-    a.button {padding: 16px 30px; font-size: 1.2em;}
+    body {
+      font-size: 20px;
+    }
+    header h1 {
+      font-size: 3.5em;
+    }
+    header p {
+      max-width: 1000px;
+      font-size: 1.25em;
+    }
+    .contact-card, .contact-form {
+      max-width: 1200px;
+      padding: 50px 60px;
+    }
+    .contact-card p {
+      font-size: 1.25em;
+    }
+    .contact-card a {
+      font-size: 1.1em;
+      padding: 14px 28px;
+    }
   }
 </style>
 </head>
 <body>
 
-<div class="thankyou-card">
-  <h1>Thank You!</h1>
-  <p>Your message has been received. I’ll review it and get back to you as soon as possible. I look forward to connecting with you!</p>
-  <a class="button" href="https://sevada.photography/">Back to Home</a>
-</div>
+<header>
+  <img class="profile" src="https://picsum.photos/400" alt="My Photo">
+  <h1>Sevada Photography</h1>
+  <p>I'd love to hear from you! Reach out via email or phone, or use the form below to send me a direct message.</p>
+</header>
+
+
+
+<!-- New Contact Form -->
+<form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+  <input type="hidden" name="access_key" value="e18a41bc-294b-4940-9ca4-7908b678d647">
+
+  <h2>Send Me a Message</h2>
+
+  <label>Your Name</label>
+  <input type="text" name="name" required>
+
+  <label>Your Email</label>
+  <input type="email" name="email" required>
+
+  <label>Phone Number</label>
+  <input type="number" name="number" required>
+
+  <label>Budget</label>
+  <input type="budget" name="budget" required>
+
+  <label>Your Message</label>
+  <textarea name="message" required></textarea>
+
+  <!-- Honeypot Spam Protection -->
+  <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+
+  <!-- Redirect after success (optional) -->
+  <input type="hidden" name="redirect" value="https://sevada.photography/thank-you.html">
+
+  <button type="submit">Send Message</button>
+</form>
 
 </body>
 </html>
