@@ -9,7 +9,7 @@
 <style>
   :root{
     --card-bg:#1f1f2e;
-    --card-border:#8d8da8; /* slightly lighter than card background */
+    --card-border:#8d8da8;
     --text:#eee;
     --muted:#ccc;
     --accent:#6e5cff;
@@ -19,7 +19,6 @@
   }
   *{ box-sizing:border-box; margin:0; padding:0; font-family:sans-serif;}
   
-  /* Dark Elegant Background */
   body {
     background: radial-gradient(circle, #1a1a2e 0%, #162447 100%);
     background-repeat: no-repeat;
@@ -31,7 +30,6 @@
 
   a{ color:var(--accent); text-decoration:none; }
 
-  /* Header scrolls normally */
   header{
     text-align:center;
     padding:40px 20px;
@@ -46,9 +44,52 @@
   header .socials a{ font-weight:bold; padding:6px 10px; border-radius:8px; background:var(--accent); color:#fff; transition:0.2s;}
   header .socials a:hover{ background:#8f7fff; }
 
-  /* Filters - sticky, transparent at top */
+  /* View Portfolio button */
+  .view-portfolio {
+    text-align: center;
+    margin: 40px 0;
+  }
+  .view-portfolio button {
+    padding: 14px 28px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    background: #ffcf63;
+    color: #000;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .view-portfolio button:hover {
+    background: #8f7fff;
+  }
+
+  /* Initially hidden completely */
+  .filters, .gallery {
+    display: none; /* removed from page flow */
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+
+  /* Make them exist in layout */
+  .filters.show, .gallery.show {
+    display: flex; /* or block for gallery */
+  }
+
+  .gallery.show {
+    display: block; /* override flex for gallery */
+  }
+
+  /* Visible with animation */
+  .filters.show.visible, .gallery.show.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
   .filters {
-    display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 12px;
@@ -60,7 +101,6 @@
     transition: background 0.3s ease, box-shadow 0.3s ease;
   }
 
-  /* When scrolled */
   .filters.scrolled {
     background: rgba(0,0,0,0.8);
     box-shadow: 0 2px 6px rgba(0,0,0,0.6);
@@ -80,9 +120,8 @@
     color:#fff;
   }
 
-  /* Masonry Gallery */
   .gallery{
-    column-count: 4; /* default number of columns */
+    column-count: 4;
     column-gap: 16px;
     padding:20px;
     max-width:1200px;
@@ -93,33 +132,6 @@
   @media (max-width:800px){ .gallery{ column-count:2; } }
   @media (max-width:500px){ .gallery{ column-count:1; } }
 
-  /* 4K and ultra-wide screens */
-  @media (min-width: 2560px) {
-    body {
-      font-size: clamp(18px, 1vw, 22px);
-    }
-    header h1 {
-      font-size: clamp(3em, 3vw, 4em);
-    }
-    header p {
-      max-width: 1000px;
-      font-size: 1.25em;
-    }
-    .gallery {
-      column-count: 6;
-      column-gap: 24px;
-      max-width: 2200px; /* wider gallery */
-    }
-    .filters button {
-      padding: 14px 24px;
-      font-size: 1.1em;
-    }
-    #lightbox-overlay img {
-      max-width:95%;
-      max-height:95%;
-    }
-  }
-
   .card{
     margin-bottom:16px;
     break-inside: avoid;
@@ -128,21 +140,12 @@
     box-shadow:var(--shadow);
     cursor:pointer;
     transition:transform 0.2s;
-    border: 5px solid var(--card-border); /* subtle border added */
+    border: 5px solid var(--card-border);
   }
 
-  .card:hover{
-    transform:translateY(-4px);
-  }
+  .card:hover{ transform:translateY(-4px); }
+  .card img{ width:100%; height:auto; display:block; object-fit:cover; }
 
-  .card img{
-    width:100%;
-    height:auto;
-    display:block;
-    object-fit:cover;
-  }
-
-  /* Lightbox */
   #lightbox-overlay{
     position:fixed;
     top:0; left:0;
@@ -173,6 +176,11 @@
     <a href="contact.html">Contact</a>
   </div>
 </header>
+
+<!-- View Portfolio button -->
+<div class="view-portfolio">
+  <button id="viewPortfolioBtn">View Portfolio</button>
+</div>
 
 <div class="filters">
   <button class="active" data-filter="all">All</button>
@@ -210,7 +218,6 @@
   </li>
 </ul>
 
-<!-- Lightbox Overlay -->
 <div id="lightbox-overlay">
   <img src="" alt="Expanded Image">
 </div>
@@ -220,6 +227,24 @@ const filterBtns = document.querySelectorAll('.filters button');
 const cards = document.querySelectorAll('.gallery .card');
 const overlay = document.getElementById('lightbox-overlay');
 const overlayImg = overlay.querySelector('img');
+const viewBtn = document.getElementById('viewPortfolioBtn');
+const filtersDiv = document.querySelector('.filters');
+const gallery = document.querySelector('.gallery');
+
+// Show portfolio with animation
+viewBtn.addEventListener('click', () => {
+  document.querySelector('.view-portfolio').style.display = 'none';
+
+  // Make them exist in layout
+  filtersDiv.classList.add('show');
+  gallery.classList.add('show');
+
+  // Trigger CSS transition
+  setTimeout(() => {
+    filtersDiv.classList.add('visible');
+    gallery.classList.add('visible');
+  }, 50);
+});
 
 // Filter functionality
 filterBtns.forEach(btn=>{
@@ -242,22 +267,17 @@ cards.forEach(card=>{
   });
 });
 
-// Close overlay when clicked
 overlay.addEventListener('click', ()=> overlay.style.display='none');
 
 // Add background & shadow when scrolling
 window.addEventListener('scroll', () => {
-  const filters = document.querySelector('.filters');
   if (window.scrollY > 200) {
-    filters.classList.add('scrolled');
+    filtersDiv.classList.add('scrolled');
   } else {
-    filters.classList.remove('scrolled');
+    filtersDiv.classList.remove('scrolled');
   }
 });
 </script>
 
 </body>
 </html>
-
-
-
