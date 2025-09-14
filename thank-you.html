@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You - Sevada Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: radial-gradient(circle, #1a1a2e 0%, #162447 100%);
+    --card-bg:#1f1f2e;
+    --card-border:#8d8da8;
+    --text:#eee;
+    --muted:#ccc;
+    --accent:#6e5cff;
+    --radius:4px;
+    --shadow:0 8px 20px rgba(0,0,0,.8);
+  }
+  *{box-sizing:border-box; margin:0; padding:0; font-family:sans-serif;}
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .thankyou-card {
+    background: var(--card-bg);
+    border: 5px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 40px 50px;
+    box-shadow: var(--shadow);
+    max-width: 700px;
+    width: 100%;
+  }
+
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+
+  p {
+    font-size: 1.1em;
+    color: var(--muted);
+    margin-bottom: 25px;
+  }
+
+  a.button {
+    display: inline-block;
+    padding: 12px 25px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+
+  a.button:hover {
+    background: #8f7fff;
+  }
+
+  @media (min-width: 2560px) {
+    body {font-size: 20px;}
+    h1 {font-size: 4em;}
+    p {font-size: 1.4em;}
+    .thankyou-card {padding: 60px 80px;}
+    a.button {padding: 16px 30px; font-size: 1.2em;}
+  }
+</style>
+</head>
+<body>
+
+<div class="thankyou-card">
+  <h1>Thank You!</h1>
+  <p>Your message has been received. I’ll review it and get back to you as soon as possible. I look forward to connecting with you!</p>
+  <a class="button" href="https://sevada.photography/">Back to Home</a>
+</div>
+
+</body>
+</html>
