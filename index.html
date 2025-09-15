@@ -39,6 +39,32 @@
   }
   header img.profile{ width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid var(--profile-border); }
   header h1{ margin:16px 0 8px; font-size:clamp(2em, 3vw, 4em); font-family: 'Great Vibes', cursive;}
+
+
+
+
+header h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2em, 3vw, 4em);
+  background: radial-gradient(circle, #ff0000, #ffdd00, #ff00ff, #ff0000);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: radialCloud 15s ease infinite;
+}
+
+@keyframes radialCloud {
+  0%   { background-position: 0% 0%; }
+  25%  { background-position: 50% 50%; }
+  50%  { background-position: 100% 100%; }
+  75%  { background-position: 50% 50%; }
+  100% { background-position: 0% 0%; }
+}
+
+
+
   header p{ max-width:600px; margin:0 auto 24px; color:var(--muted); font-size:clamp(1em, 1.2vw, 1.25em);}
   header .socials{ display:flex; justify-content:center; gap:12px; margin-top:8px;}
   header .socials a{ font-weight:bold; padding:6px 10px; border-radius:8px; background:var(--accent); color:#fff; transition:0.2s;}
