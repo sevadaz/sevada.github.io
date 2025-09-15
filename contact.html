@@ -210,20 +210,42 @@
 
   <h2>Send Me a Message</h2>
 
-  <label>Your Name</label>
-  <input type="text" name="name" required>
+<style>
+  .name-row {
+    display: flex;
+    gap: 10px; /* space between fields */
+  }
+  .name-row input {
+    flex: 1; /* make both inputs share equal space */
+  }
+</style>
 
-  <label>Your Email</label>
+<label>Your Name <span class="required">(required)</span></label>
+<div class="name-row">
+  <input type="text" name="first_name" placeholder="First Name" required>
+  <input type="text" name="last_name" placeholder="Last Name" required>
+</div>
+
+<style>
+  .required {
+    font-size: 0.8em;   /* smaller than normal text */
+    color: #888;        /* grey color */
+    font-style: italic; /* optional */
+  }
+</style>
+
+
+
+  <label>Your Email <span class="required">(required)</span></label>
   <input type="email" name="email" required>
 
   <label>Phone Number</label>
-  <input type="tel" name="number" required pattern="[0-9]{3}-?[0-9]{3}-?[0-9]{4}" placeholder="000-000-0000">
+  <input type="tel" name="number" pattern="[0-9]{3}-?[0-9]{3}-?[0-9]{4}" placeholder="000-000-0000">
 
+  <label>Subject <span class="required">(required)</span></label>
+  <input type="text" name="subject" required>
 
-  <label>Budget</label>
-  <input type="budget" name="budget" required>
-
-  <label>Your Message</label>
+  <label>Your Message <span class="required">(required)</span></label>
   <textarea name="message" required></textarea>
 
   <!-- Honeypot Spam Protection -->
