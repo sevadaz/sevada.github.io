@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <link rel="icon" type="image/png" href="favicon.ico">
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,10 +17,14 @@
     --radius:4px;
     --shadow:0 8px 20px rgba(0,0,0,.8);
   }
-  *{ box-sizing:border-box; margin:0; padding:0; font-family:sans-serif;}
+  *{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
   
   body {
-    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     background: radial-gradient(circle, #1a1a2e 0%, #162447 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -40,10 +43,7 @@
     box-shadow: 0 2px 8px rgba(0,0,0,.5);
   }
   header img.profile{ width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid var(--profile-border); }
-  header h1{ margin:16px 0 8px; font-size:clamp(2em, 3vw, 4em); font-family: 'Great Vibes', cursive;}
-
-
-
+  header h1{ margin:16px 0 8px; font-size:clamp(2em, 3vw, 4em); font-family: 'Great Vibes', cursive; }
 
 header h1 {
   font-family: 'Great Vibes', cursive;
@@ -65,19 +65,17 @@ header h1 {
   100% { background-position: 0% 0%; }
 }
 
-
-
   header p{ max-width:600px; margin:0 auto 24px; color:var(--muted); font-size:clamp(1em, 1.2vw, 1.25em);}
   header .socials{ display:flex; justify-content:center; gap:12px; margin-top:8px;}
   header .socials a{ font-weight:bold; padding:6px 10px; border-radius:8px; background:var(--accent); color:#fff; transition:0.2s;}
   header .socials a:hover{ background:#8f7fff; }
   .socials a[href="contact.html"] {
-  background: #28a745; /* Green */
-  color: #fff;
-}
-.socials a[href="contact.html"]:hover {
-  background: #218838; /* Darker green on hover */
-}
+    background: #28a745; /* Green */
+    color: #fff;
+  }
+  .socials a[href="contact.html"]:hover {
+    background: #218838; /* Darker green on hover */
+  }
 
   /* View Portfolio button */
   .view-portfolio {
@@ -172,7 +170,7 @@ header h1 {
   .card{
     margin-bottom:16px;
     break-inside: avoid;
-/*     border-radius:var(--radius); */
+    /* border-radius:var(--radius); */
     overflow:hidden;
     box-shadow:var(--shadow);
     cursor:pointer;
@@ -318,5 +316,3 @@ window.addEventListener('scroll', () => {
 
 </body>
 </html>
-
-
